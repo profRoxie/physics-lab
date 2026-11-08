@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Physics Data Logger v1.0</title>
+
+
+</head>
+
+<body>
+<script>
+console.log("inline javascript works");
+</script>
+<link rel="stylesheet"
+      href="physics-data-log-app.en-US.customcss.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+
+<script src="physics-data-log-app.en-US.customjs.js"></script>
+<h1>📈 Physics Data Logger, v1.0</h1>
+<h2>Created by Instructor R.E. Baker</h2>
+
+<div class="instructions">
+Enter data from your experiment. Add rows as needed, then download as a CSV file.
+</div>
+<h1></h1>
+<div class="toolbar">
+
+<button onclick="addRow()">
+    <span class="button-icon">+</span>
+    Add Row
+</button>
+
+<button onclick="addColumn()">
+    <span class="button-icon">+</span>
+    Add Column
+</button>
+
+<button onclick="downloadCSV()">
+    <span class="button-icon">↓</span>
+    Export CSV
+</button>
+<button onclick="plotData()">
+📈 Plot Data
+</button>
+<button onclick="clearGraph()">
+    🗑 Clear Graph
+</button>
+<button onclick="resetWorksheet()">
+    🔄 Reset Worksheet
+</button>
+<button onclick="loadSampleData()">
+    📋 Sample Data
+</button>
+
+<h3>Paste from Excel or Google Sheets</h3>
+
+<textarea
+    id="pasteBox"
+    rows="4"
+    placeholder="Paste data from Excel here">
+</textarea>
+
+<button onclick="pasteData()">
+    📋 Import Data
+</button>
+</div>
+<div class="workspace">
+
+    <section class="table-panel">
+
+<table id="dataTable">
+    <thead>
+        <tr id="headerRow">
+            <th>
+                <div class="header-cell">
+                    <span contenteditable="true">Time (s)</span>
+                    <button
+                        class="delete-column-btn"
+                        onclick="deleteColumn(this)">
+                        ✕
+                    </button>
+                </div>
+            </th>
+
+            <th>
+                <div class="header-cell">
+                    <span contenteditable="true">Position (m)</span>
+                    <button
+                        class="delete-column-btn"
+                        onclick="deleteColumn(this)">
+                        ✕
+                    </button>
+                </div>
+            </th>
+
+            <th>Delete</th>
+        </tr>
+    </thead>
+<tbody>
+
+        <tr>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td>
+                <button
+                    class="delete-btn"
+                    onclick="window.deleteRow(this)">
+                    ✕
+                </button>
+            </td>
+        </tr>
+
+        <tr>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td>
+                <button
+                    class="delete-btn"
+                    onclick="window.deleteRow(this)">
+                    ✕
+                </button>
+            </td>
+        </tr>
+
+        <tr>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td>
+                <button
+                    class="delete-btn"
+                    onclick="window.deleteRow(this)">
+                    ✕
+                </button>
+            </td>
+        </tr>
+
+    </tbody>
+<!-- Keep your existing THEAD and TBODY here -->
+
+        </table>
+
+    </section>
+
+    <section class="graph-panel">
+
+        <h2>Graph</h2>
+
+        <div class="graph-controls">
+
+            <label for="xAxisSelect">
+                X Axis
+            </label>
+
+            <select id="xAxisSelect"></select>
+
+            <label for="yAxisSelect">
+                Y Axis
+            </label>
+
+            <select id="yAxisSelect"></select>
+
+            <button onclick="plotData()">
+                📈 Plot Data
+            </button>
+
+        </div>
+<div class="chart-wrapper">
+
+    <canvas id="chartCanvas"></canvas>
+
+</div>
+
+    </section>
+
+</div>
+
+</div>
+</body>
